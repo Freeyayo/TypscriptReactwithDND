@@ -10,7 +10,7 @@ export const findItemIndexById = <TItem extends Item>(
 };
 
 /**
- *
+ * A utility function that will help us to move the items inside the array
  * @param array origin array whose item will be moved
  * @param from starting index
  * @param to ending index
