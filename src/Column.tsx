@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { AddNewItem } from "./AddNewItem";
 import { ColumnContainer, ColumnTitle } from "./styles";
 import { useAppState } from "./state/AppStateContext";

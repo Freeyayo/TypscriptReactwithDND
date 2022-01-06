@@ -5,7 +5,7 @@ import { AddNewItem } from "./AddNewItem";
 import { useAppState } from "./state/AppStateContext";
 
 export const App: FC = () => {
-  const { lists } = useAppState();
+  const { lists, dispatch } = useAppState();
   return (
     <AppContainer>
       {lists.map((list) => {
@@ -14,7 +14,7 @@ export const App: FC = () => {
       })}
       <AddNewItem
         toggleButtonText="+ Add another list"
-        onAdd={(text) => console.log(text)}
+        onAdd={(text) => dispatch({ type: "ADD_LIST", payload: text })}
       ></AddNewItem>
     </AppContainer>
   );
