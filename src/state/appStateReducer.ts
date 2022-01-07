@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { findItemIndexById, moveItem } from "../utils/arrayUtils";
+import { DragItem } from "../DragItem";
 import { Action } from "./actions";
 
 export type Task = {
@@ -13,6 +14,7 @@ export type List = {
 };
 export type AppState = {
   lists: List[];
+  draggedItem: DragItem | null;
 };
 
 export const appStateReducer = (
