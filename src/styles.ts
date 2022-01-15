@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+type DragPreviewWrapperProps = {
+  position: {
+    x: number;
+    y: number;
+  };
+};
+
 type AddItemButtonProps = {
   dark?: boolean;
 };
@@ -101,3 +108,11 @@ export const CustomDragLayerContainer = styled.div`
   width: 100%;
   z-index: 100;
 `;
+
+export const DragPreviewWrapper = styled.div.attrs<DragPreviewWrapperProps>(
+  ({ position: { x, y } }) => ({
+    style: {
+      transform: `translate(${x}px, ${y}px)`,
+    },
+  })
+)<DragPreviewWrapperProps>``;
