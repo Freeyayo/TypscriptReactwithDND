@@ -1,20 +1,22 @@
 import { useDrop } from "react-dnd";
 import { useAppState } from "../state/AppStateContext";
 import { moveList } from "../state/actions";
+import { DrogItem } from "../DropItem";
 
-export const useItemDrop = (columnId: string) => {
+export const useItemDrop = (dropItem: DrogItem) => {
   const { dispatch, draggedItem } = useAppState();
+  const { id, type } = dropItem;
   const [, drop] = useDrop({
-    accept: "COLUMN",
+    accept: type,
     hover() {
       if (!draggedItem) {
         return;
       }
-      if (draggedItem.type === "COLUMN") {
-        if (draggedItem.id === columnId) {
+      if (draggedItem.type === type) {
+        if (draggedItem.id === id) {
           return;
         }
-        dispatch(moveList(draggedItem.id, columnId));
+        dispatch(moveList(draggedItem.id, id));
       }
     },
   });

@@ -17,7 +17,7 @@ export const Column = ({ text, id }: ColumnProps) => {
   const tasks = getTasksByListId(id);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { drop } = useItemDrop(id);
+  const { drop } = useItemDrop({ type: "COLUMN", id });
 
   const { drag } = useItemDrag({ type: "COLUMN", id, text });
 
