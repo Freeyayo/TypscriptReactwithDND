@@ -5,6 +5,7 @@ import { useDrop } from "react-dnd";
 import { useAppState } from "./state/AppStateContext";
 import { isHidden } from "./utils/isHidden";
 import { moveTask, setDraggedItem } from "./state/actions";
+import { useItemDrop } from "./utils/useItemDrop";
 
 type CardProps = {
   text: string;
@@ -14,23 +15,13 @@ type CardProps = {
 };
 
 export const Card = ({ text, id, columnId, isPreview }: CardProps) => {
-  const { draggedItem, dispatch } = useAppState();
+  const { draggedItem } = useAppState();
   const ref = useRef<HTMLDivElement>(null);
 
-  const [, drop] = useDrop({
-    accept: "CARD",
-    hover() {
-      if (!draggedItem) {
-        return;
-      }
-      if (draggedItem.type !== "CARD") {
-        return;
-      }
-      if (draggedItem.id === id) {
-        return;
-      }
-      dispatch(moveTask(draggedItem.id, id, draggedItem.columnId, columnId));
-    },
+  const { drop } = useItemDrop({
+    type: "CARD",
+    id,
+    columnId,
   });
 
   const { drag } = useItemDrag({

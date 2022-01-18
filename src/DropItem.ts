@@ -1,4 +1,5 @@
 export type DropItem = {
   id: string;
-  type: "COLUMN";
+  type: "COLUMN" | "CARD";
+  columnId?: string;
 };
